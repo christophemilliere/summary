@@ -14,21 +14,6 @@ namespace summary.Api
     class Apis
     {
 
-        private string blog;
-
-        public string Blog
-        {
-            get { return blog; }
-            set { blog = value; }
-        }
-        private string blogName;
-
-        public string BlogName
-        {
-            get { return blogName; }
-            set { blogName = value; }
-        }
-        
         public void Summary(){
             WebClient client = new WebClient();
             client.DownloadStringCompleted += client_DownloadStringCompleted;
