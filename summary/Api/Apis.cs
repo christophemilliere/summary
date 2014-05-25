@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Windows;
 using Newtonsoft.Json;
-using Microsoft.Phone.Shell;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace summary.Api
 {
     class Apis
     {
+
         public void Summary(){
             WebClient client = new WebClient();
             client.DownloadStringCompleted += client_DownloadStringCompleted;
@@ -22,15 +25,12 @@ namespace summary.Api
         {
             if (e.Error == null)
             {
-                try
-                {
-                    var root = JsonConvert.DeserializeObject<RootObject>(e.Result);
-                    PhoneApplicationService.Current.State["root"] = root;
-                }
-                catch (Newtonsoft.Json.JsonSerializationException jse)
-                {
-                    MessageBox.Show("erreur json : " + jse.Message + "----------------" + jse.StackTrace);   
-                }
+                string texte = e.Result;
+
+                //MessageBox.Show((string)JsonConvert.DeserializeObject(texte));
+                List<Object> products = JsonConvert.DeserializeObject<List<Object>>(texte);
+                
+                //Console.WriteLine(JsonConvert.SerializeObject(texte));
             }
             else
             {
