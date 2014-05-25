@@ -47,7 +47,16 @@
 
         <!--ContentPanel - placez tout contenu supplémentaire ici-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-
+            <StackPanel >
+                <StackPanel>
+                    <TextBlock Width="200" Text="blog :" />
+                    <TextBlock Text="{Binding last_name}" />
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Width="200" Text="Prénom :" />
+                    <TextBlock Text="{Binding first_name}" />
+                </StackPanel>
+            </StackPanel>
         </Grid>
 
         <!--Supprimez les commentaires pour voir une grille d'alignement qui vous aidera à vous assurer que vos contrôles sont

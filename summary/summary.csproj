@@ -91,6 +91,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Api\Apis.cs" />
+    <Compile Include="Api\RelatedAsset.cs" />
+    <Compile Include="Api\RootObject.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
