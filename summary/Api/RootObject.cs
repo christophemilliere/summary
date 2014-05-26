@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace summary.Api
@@ -14,9 +15,7 @@ namespace summary.Api
         public string title { get; set; }
         public string summary { get; set; }
         public string article_list { get; set; }
-
-        public void getImage()
-        {
-        }
+        public Assets assets { get; set; }
+        public Image image { get; set; }
     }
 }
