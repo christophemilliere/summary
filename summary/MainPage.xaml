@@ -37,12 +37,12 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="10" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                                <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Source="{Binding assets.url}" />
-                                <TextBlock Grid.Column="1" Grid.Row="0" FontSize="26" FontWeight="Bold" TextWrapping="Wrap" Text="{Binding title}" />
-                                <TextBlock Grid.Column="1" Grid.Row="1" FontSize="24" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Text="{Binding summary}" />
+                            <Image Grid.ColumnSpan="2" Grid.RowSpan="2" Source="{Binding assets.url}" Opacity="0.5"/>
+                            <TextBlock Grid.Column="1" Grid.Row="0" FontSize="26" FontWeight="Bold" TextWrapping="Wrap" Text="{Binding title}" />
+                            <TextBlock Grid.Column="1" Grid.Row="1" Opacity="40" FontSize="24" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Text="{Binding summary}" />
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>                    

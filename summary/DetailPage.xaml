@@ -22,7 +22,7 @@
 
         <!--TitlePanel contient le nom de l'application et le titre de la page-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="SUMMERIZE" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="SUMMARIZE" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="detail" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 

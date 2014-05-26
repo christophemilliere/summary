@@ -42,6 +42,14 @@ namespace summary
                 {
                     roots = JsonConvert.DeserializeObject<List<RootObject>>(e.Result);
                     this.DataContext = this;
+                    foreach (RootObject root in roots)
+                    {
+                        if (root.assets == null)
+                        {
+                            Assets asset = new Assets() { url = "Assets/flou.jpg", height = 480, width = 800 };
+                            root.assets = asset;
+                        }
+                    }
                 }
                 catch (Newtonsoft.Json.JsonSerializationException jse)
                 {
