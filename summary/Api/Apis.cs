@@ -7,7 +7,6 @@ using System.Net;
 using System.Windows;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace summary.Api

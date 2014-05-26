@@ -20,43 +20,33 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- REMARQUE CONCERNANT LA LOCALISATION :
-            Pour localiser les chaînes affichées, copiez leurs valeurs dans les clés correctes
-            du fichier de ressources linguistiquement neutre de l'application (AppResources.resx), puis
-            remplacez le texte codé en dur entre les guillemets des attributs
-            par la clause de liaison dont le chemin pointe vers ce nom de chaîne.
-
-            Par exemple :
-
-                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
-
-            Cette liaison pointe vers la ressource de chaîne du modèle appelée ApplicationTitle.
-
-            L'ajout de langues prises en charge à l'onglet Propriétés du projet crée un
-            fichier resx par langue qui peut restituer les valeurs traduites de vos
-            chaînes d'interface utilisateur. La liaison dans ces exemples peut entraîner le retrait de la valeur des
-            attributs du fichier .resx qui correspond à la valeur
-            CurrentUICulture de l'application au moment de l'exécution.
-         -->
-
         <!--TitlePanel contient le nom de l'application et le titre de la page-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MON APPLICATION" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Text="nom de la page" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="SUMMARIZE" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Text="feeds" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - placez tout contenu supplémentaire ici-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <StackPanel >
-                <StackPanel>
-                    <TextBlock Width="200" Text="blog :" />
-                    <TextBlock Text="{Binding last_name}" />
-                </StackPanel>
-                <StackPanel>
-                    <TextBlock Width="200" Text="Prénom :" />
-                    <TextBlock Text="{Binding first_name}" />
-                </StackPanel>
-            </StackPanel>
+            <ListBox x:Name="rootsListBox" ItemsSource="{Binding Roots}" Tap="Item_Tap">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="RootObject" Margin="0, 10" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Grid.RowSpan="2" />
+                                <TextBlock Grid.Column="1" Grid.Row="0" FontWeight="Bold" TextWrapping="Wrap" Text="{Binding title}" />
+                                <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Text="{Binding summary}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>                    
+            </ListBox>
         </Grid>
 
         <!--Supprimez les commentaires pour voir une grille d'alignement qui vous aidera à vous assurer que vos contrôles sont

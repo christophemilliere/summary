@@ -10,48 +10,38 @@ using Microsoft.Phone.Shell;
 using summary.Resources;
 using summary.Api;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Collections.ObjectModel;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace summary
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        private List<RootObject> roots;
+        public List<RootObject> Roots
+        {
+            get { return roots; }
+            set { roots = value; }
+        }
         // Constructeur
         public MainPage()
         {
             InitializeComponent();
-            //Apis test = new Apis();
-            //test.Summary();
             WebClient client = new WebClient();
             client.DownloadStringCompleted += client_DownloadStringCompleted;
-            client.DownloadStringAsync(new Uri("http://graph.facebook.com/florent.farges.9"));
-
-            // Exemple de code pour la localisation d'ApplicationBar
-            //BuildLocalizedApplicationBar();
+            client.DownloadStringAsync(new Uri("http://prohet.net/teaser/summarize.php"));
         }
 
-        // Exemple de code pour la conception d'une ApplicationBar localisée
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Définit l'ApplicationBar de la page sur une nouvelle instance d'ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
-
-        //    // Crée un bouton et définit la valeur du texte sur la chaîne localisée issue d'AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Crée un nouvel élément de menu avec la chaîne localisée d'AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
         private void client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             if (e.Error == null)
             {
                 try
                 {
-                    var root = JsonConvert.DeserializeObject<RootObject>(e.Result);
-                    this.DataContext = root;
+                    roots = JsonConvert.DeserializeObject<List<RootObject>>(e.Result);
+                    this.DataContext = this;
                 }
                 catch (Newtonsoft.Json.JsonSerializationException jse)
                 {
@@ -62,6 +52,16 @@ namespace summary
             {
                 MessageBox.Show("Impossible de récupérer les données sur internet : " + e.Error);
             }
+        }
+
+        private void Item_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (sender is ListBox)
+            {
+                object obj = (sender as ListBox).SelectedItem;
+                PhoneApplicationService.Current.State["Item"] = (RootObject)obj;
+            }
+            NavigationService.Navigate(new Uri("/DetailPage.xaml", UriKind.Relative));
         }
     }
 }
